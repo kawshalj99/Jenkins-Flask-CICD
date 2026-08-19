@@ -16,8 +16,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Docker Desktop exposes the socket with GID 0.
-# Add Jenkins to the root group so it can access the socket.
+
 RUN usermod -aG root jenkins
 
 USER jenkins
