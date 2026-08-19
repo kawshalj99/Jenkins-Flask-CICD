@@ -18,8 +18,8 @@ pipeline {
             steps {
                 sh '''
                     docker run --rm \
-                        -v "$PWD:/app" \
-                        -w /app \
+                        --volumes-from jenkins \
+                        -w /var/jenkins_home/workspace/Jenkins-Flask-CICD \
                         python:3.13-slim \
                         sh -c "pip install --no-cache-dir -r requirements.txt && python -m pytest -v"
                 '''
