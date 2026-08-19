@@ -32,7 +32,7 @@ GitHub → Jenkins → Docker Test Environment → Pytest → Docker Build → C
 
 ## Project Structure
 
-
+```text
 Jenkins-Flask-CICD/
 │
 ├── app.py
