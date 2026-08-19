@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
+
     environment {
         IMAGE_NAME = "jenkins-flask-app"
         CONTAINER_NAME = "jenkins-flask-app"
@@ -50,7 +54,9 @@ pipeline {
             steps {
                 sh '''
                     sleep 5
-                    curl --fail http://localhost:5001/health
+
+                    docker exec ${CONTAINER_NAME} \
+                        python -c "import urllib.request; print(urllib.request.urlopen('http://localhost:5000/health').read().decode())"
                 '''
             }
         }
